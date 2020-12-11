@@ -9,7 +9,7 @@ from selenium.webdriver.chrome.options import Options
 
 DRIVER_PATH = r'E:\\Chromedriver\\chromedriver.exe'
 GIFS_DIR = os.path.dirname(os.path.realpath(__file__)) + '\\GIFs\\'
-USAGE = f'Usage: python {sys.argv[0]} [--help] | [-d <destination>]'
+USAGE = f'Usage: python {sys.argv[0]} [--help] | [-d <destination_path>]'
 
 class Webscraper():
     def __init__(self, destination):
