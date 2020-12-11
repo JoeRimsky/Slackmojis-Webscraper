@@ -6,3 +6,7 @@ Solely used for scraping all available GIF files for use with a Slack bot/app to
 
 ## Instructions
 'python Webscraper.py [--help] | [-d <destination_path>]'
+
+### In Progess
+- Implement auto upload through Slack API using user token
+- Dynamic scraping of other sites
