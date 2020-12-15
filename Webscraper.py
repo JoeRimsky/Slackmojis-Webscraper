@@ -28,12 +28,15 @@ class Webscraper():
                 emoji_name = os.path.splitext(base_path)[0]
 
                 if emoji_name not in self.current_emojis:
-                    with open((self.destination+emoji_name+'.gif'), 'wb') as gif_out:
+                    with open((self.destination+emoji_name+'.gif'), 'ab+') as gif_out:
                         gif_out.write(response.content)
-
-                    with open((self.destination+emoji_name+'.gif'), 'rb') as gif_up:
-                        image = {'image': gif_up}
+                        gif_out.seek(0)
+                        image = {'image': gif_out}
                         slack.upload_emoji(name=emoji_name, image=image)
+
+                    # with open((self.destination+emoji_name+'.gif'), 'rb') as gif_up:
+                    #     image = {'image': gif_up}
+                    #     slack.upload_emoji(name=emoji_name, image=image)
 
         if not os.path.exists(self.destination):
             os.makedirs(self.destination)

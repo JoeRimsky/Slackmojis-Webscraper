@@ -28,6 +28,8 @@ class Slack():
         
         if resp["ok"]:
             print(f'Successful upload: {name}')
+        else:
+            print(f'Failed upload: {name} Error: {resp["error"]}')
 
     def get_current_list(self):
         api_list_url = f'{self.base_url}/api/emoji.list'
@@ -40,6 +42,7 @@ class Slack():
             'count': 1000,
             'token': self.token
         }
+        
         req = requests.post(api_list_url, data=body)
         req.raise_for_status()
         response_json = req.json()

@@ -1,12 +1,17 @@
 # Slackmojis-Webscraper
-Webscraper designed currently to scrape all .gif files from the mentioned website for use with Slack API to upload emojis.
 
 ## Usage
-Solely used for scraping all available GIF files for use with a Slack bot/app to mass-upload emojis to a workspace.
+Solely used for scraping and uploading any GIF files not currently added to the specified Slack workspace.
 
 ## Instructions
-'python Webscraper.py [--help] | [-d <destination_path>]'
+1. [Download](https://chromedriver.chromium.org/downloads) the Chromedriver version compatible with your Chrome version.
+    - Remember where you saved the executable.
+2. [Install](https://www.python.org/downloads/) Python 3 if not already installed.
+3. Install the required Python packages:
+'pip3 install -r requirements.txt'
+4. Get your xoxs Slack token using [this walkthrough](https://github.com/jackellenberger/emojme#finding-a-slack-token).
+5. Execute the tool:
+'python3 webscraper.py [--help] | [-d <chromedriver_path>] [-w <workspace_name>] [-t slack_token]'
 
 ### In Progess
-- Implement auto upload through Slack API using user token
-- Dynamic scraping of other sites
+- Scraping of other sites
