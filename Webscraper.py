@@ -14,7 +14,7 @@ class Webscraper():
         options = Options()
         options.headless = True
         self.driver = webdriver.Chrome(executable_path=chromedriver_path, options=options)
-        self.destination = os.path.dirname(os.path.realpath(__file__)) + '\\GIFs\\'
+        self.destination = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'GIFs')
         self.current_emojis = []
     
     def start(self, links, slack):
@@ -28,15 +28,11 @@ class Webscraper():
                 emoji_name = os.path.splitext(base_path)[0]
 
                 if emoji_name not in self.current_emojis:
-                    with open((self.destination+emoji_name+'.gif'), 'ab+') as gif_out:
+                    with open((os.path.join(self.destination,emoji_name+'.gif')), 'ab+') as gif_out:
                         gif_out.write(response.content)
                         gif_out.seek(0)
                         image = {'image': gif_out}
                         slack.upload_emoji(name=emoji_name, image=image)
-
-                    # with open((self.destination+emoji_name+'.gif'), 'rb') as gif_up:
-                    #     image = {'image': gif_up}
-                    #     slack.upload_emoji(name=emoji_name, image=image)
 
         if not os.path.exists(self.destination):
             os.makedirs(self.destination)
@@ -60,6 +56,8 @@ class Webscraper():
     def cleanup(self):
         self.driver.quit()
         rmtree(self.destination)
+        if os.path.exists('debug.log'):
+            os.remove('debug.log')
 
 def parse_args():
     parser = argparse.ArgumentParser()
